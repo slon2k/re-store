@@ -1,24 +1,33 @@
 import React from 'react'
 import BookListItem from "../book-list-item";
+import {connect} from 'react-redux'
 
-const BookList = ({books}) => {
+class BookList extends React.Component {
 
-    const bookListItems = books.map((book) => {
+    render() {
+        const {books} = this.props;
+        const bookListItems = books.map((book) => {
+            return (
+                <li key={book.id}>
+                    <BookListItem book={book} />
+                </li>
+            )
+        });
+
         return (
-            <li>
-                <BookListItem book={book} />
-            </li>
+            <div>
+                <ul>
+                    {bookListItems}
+                </ul>
+            </div>
         )
-    });
-
-    return (
-        <div>
-            <ul>
-                {bookListItems}
-            </ul>
-        </div>
-    )
+    }
 }
 
-export default BookList
+const mapStateToProps = (state) => {
+    return {books: state.books}
+}
+
+export default connect(mapStateToProps)(BookList)
+
 
