@@ -1,5 +1,7 @@
 import React from 'react';
 import { withBookStoreService } from '../hoc';
+import {Route, Switch} from "react-router-dom";
+import {HomePage, CartPage} from "../pages";
 
 
 const App = ({bookstoreService}) => {
@@ -7,6 +9,10 @@ const App = ({bookstoreService}) => {
     return (
         <div>
             <h2>App</h2>
+            <Switch>
+                <Route path={'/'} exact component={HomePage}/>
+                <Route path={'/cart'} exact component={CartPage}/>
+            </Switch>
         </div>
     )
 }
